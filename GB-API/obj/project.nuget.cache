@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "fZlwLOnJPo/JVMqm4+UG0s8b5Hn/9ppcdzgOGVV7Mk20WuzBNFivbGnNLmoU5QsthVIocZbQfd0HfSgGC6C/DQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Dylla\\RiderProjects\\GB-API\\GB-API\\GB-API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Dylla\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Dylla\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Dylla\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Dylla\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
