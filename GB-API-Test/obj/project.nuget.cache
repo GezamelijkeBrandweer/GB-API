@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "wIxeUD9Epe1sLFyLNfr3klpUfMofFnh8y+nazOj9GnYUzrTV1HyKxWHX3oH0ppdALrt6f8zHr2+4+4EzjIQS6w==",
+  "dgSpecHash": "Gt0+1/4SiIkYvW7jjaNxpcGE9vAeamP/3TWtnE7NPuX0Gu/Z4/oLupFzcywt1I0DRWrKKkvPfvR9X8ipi9roug==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dylla\\RiderProjects\\GB-API\\GB-API-Test\\GB-API-Test.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Dylla\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.codecoverage\\16.11.0\\microsoft.codecoverage.16.11.0.nupkg.sha512",
     "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.net.test.sdk\\16.11.0\\microsoft.net.test.sdk.16.11.0.nupkg.sha512",
