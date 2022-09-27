@@ -1,6 +1,7 @@
 using GB_API.Server.Application;
 using GB_API.Server.Data;
 using GB_API.Server.Data.IncidentDB;
+using GB_API.Server.Data.LocatieDB;
 using GB_API.Server.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ builder.Services.AddSwaggerGen();
 // Database connection/init
 builder.Services.AddDbContext<IncidentContext>(contextOptions => contextOptions.UseInMemoryDatabase("Incident"));
 builder.Services.AddScoped<IEntityRepository<Incident>, IncidentRepository>();
+builder.Services.AddScoped<IEntityRepository<Locatie>, LocatieRepository>();
 builder.Services.AddConnections();
 // Dependency injection
 builder.Services.AddScoped<IIncidentService, IncidentService>();
