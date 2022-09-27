@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "XyU+pl8cl+zWZvaO1L3o02AGkba87JQ918bjnyFJGMcZJ1reVEX46SDHArI8/PcTUk/Ldh0j5xdYUuGePgiHRQ==",
+  "dgSpecHash": "iACQ5ERkfVHPjkoLWQLuSu3k3T6xqYkwh6xJOLoCSVz9HXRTKyUE3amqPq7FC4+cZr/sWiNwK/bcCPZCCSP/hg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dylla\\RiderProjects\\GB-API\\GB-API\\GB-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.0-rc.1.22426.7\\microsoft.entityframeworkcore.7.0.0-rc.1.22426.7.nupkg.sha512",
     "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.0-rc.1.22426.7\\microsoft.entityframeworkcore.abstractions.7.0.0-rc.1.22426.7.nupkg.sha512",
     "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.0-rc.1.22426.7\\microsoft.entityframeworkcore.analyzers.7.0.0-rc.1.22426.7.nupkg.sha512",
+    "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\7.0.0-rc.1.22426.7\\microsoft.entityframeworkcore.inmemory.7.0.0-rc.1.22426.7.nupkg.sha512",
     "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0-rc.1.22426.10\\microsoft.extensions.caching.abstractions.7.0.0-rc.1.22426.10.nupkg.sha512",
     "C:\\Users\\Dylla\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0-rc.1.22426.10\\microsoft.extensions.caching.memory.7.0.0-rc.1.22426.10.nupkg.sha512",

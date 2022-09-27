@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[7.0.0-rc.1.22426.7, )"
             },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[7.0.0-rc.1.22426.7, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"

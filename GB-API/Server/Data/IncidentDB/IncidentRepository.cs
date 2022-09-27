@@ -17,9 +17,9 @@ public class IncidentRepository : IEntityRepository<Incident>
         return _context.Incidents.ToList();
     }
 
-    public void Save(Incident entity)
+    public void Save(Incident incident)
     {
-        _context.Add(entity);
+        _context.Add(incident);
     }
 
     public void DeleteById(long id)
