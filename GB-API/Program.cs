@@ -19,6 +19,7 @@ builder.Services.AddDbContext<IncidentContext>(contextOptions => contextOptions.
 builder.Services.AddScoped<IEntityRepository<Incident>, IncidentRepository>();
 builder.Services.AddScoped<IEntityRepository<Locatie>, LocatieRepository>();
 builder.Services.AddConnections();
+
 // Dependency injection
 builder.Services.AddScoped<IIncidentService, IncidentService>();
 
