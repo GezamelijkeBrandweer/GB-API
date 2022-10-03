@@ -15,7 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Database connection/init
-builder.Services.AddDbContext<IncidentContext>(contextOptions => contextOptions.UseInMemoryDatabase("Incident"));
+builder.Services.AddDbContext<IncidentContext>(contextOptions => contextOptions.UseInMemoryDatabase("MIC-Database"));
 builder.Services.AddScoped<IEntityRepository<Incident>, IncidentRepository>();
 builder.Services.AddScoped<IEntityRepository<Locatie>, LocatieRepository>();
 builder.Services.AddConnections();
