@@ -1,0 +1,11 @@
+{
+  "_embedded": {
+    "dag": "Maandag",
+    "dagInMaand": 5,
+    "week": {
+      "nummer": 40,
+      "lengte": 7,
+      "weer": "bewolkt"
+    }
+  }
+}  

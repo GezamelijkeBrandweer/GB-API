@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Nodes;
+﻿using System.Text;
+using System.Text.Json.Nodes;
+using MIC_RequestSender.Domain;
 
 namespace MIC_RequestSender;
 
@@ -21,11 +23,11 @@ public class RequestSender
         }
         return httpClient;
     }
-    public static async Task<JsonNode> SendRequest(HttpClient client, RequestMethod method, string optionalUri = "", List<string> optionalQueryParams = null, HttpContent optionalBody = null)
+    public static async Task<JsonNode> SendRequest(HttpClient client, RequestMethod method, string optionalUri = "", Dictionary<string, string>? optionalQueryParams = null, HttpContent? optionalBody = null)
     {
-        if (optionalQueryParams == null && optionalUri != "")
+        if (optionalQueryParams != null && optionalUri != "")
         {
-            string.Format(optionalUri, optionalQueryParams);
+            optionalUri = FormatQueryParams(optionalQueryParams, optionalUri);
         }
         using var response = method switch
         {
@@ -39,5 +41,17 @@ public class RequestSender
         response.EnsureSuccessStatusCode();
         var jsonNode = await response.Content.ReadAsStringAsync();
         return JsonNode.Parse(jsonNode) ?? throw new NullReferenceException("Request heeft geen body ");
+    }
+
+    private static string FormatQueryParams(Dictionary<string, string> queryParams, string uri)
+    {
+        var stringBuilder = new StringBuilder(uri);
+        foreach (var queryParam in queryParams)
+        {
+            stringBuilder.Append($"{queryParam.Key}={queryParam.Value}&");
+        }
+        // remove last &
+        stringBuilder.Remove(-1, 1);
+        return stringBuilder.ToString();
     }
 }
