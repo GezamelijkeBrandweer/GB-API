@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  pg:
+    image: postgres
+    restart: always
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - ./db/pg/init:/docker-entrypoint-initdb.d/
+      - ./db/pg/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: brandweer
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "127.0.0.1:9091:80" 
+    volumes:
+      - ./db/pg:/db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: vrr@vr-rr.nl
+      PGADMIN_DEFAULT_PASSWORD: brandweer
+      PGADMIN_SERVER_JSON_FILE: /db/server.json
