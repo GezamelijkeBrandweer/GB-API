@@ -9,7 +9,11 @@ public class Incident
     public long Id { get; set; }
     public string Name { get; set; }
     public Locatie Locatie { get; set; }
-    
+
+    public int IntensiteitPunten { get; set; }
+    public List<Karakteristiek> KarakteristiekList { get; set; } = new();
+    public MeldingsClassificaties MeldingsClassificaties { get; set; } = new();
+
     public List<TrafficIncident> VerkeersIncidenten { get; set; } = new();
 
     public Incident(){}
@@ -20,9 +24,21 @@ public class Incident
         Locatie = locatie;
     }
     
+    public Incident(string name, MeldingsClassificaties meldingsClassificaties ,Locatie locatie)
+    {
+        Name = name;
+        Locatie = locatie;
+        MeldingsClassificaties = meldingsClassificaties;
+    }
+    
     public void AddVerkeersIncident(TrafficIncident verkeersIncident)
     {
         this.VerkeersIncidenten.Add(verkeersIncident);
     }
+    public void AddKarkteristieken(Karakteristiek karakteristiek)
+    {
+        KarakteristiekList.Add(karakteristiek);
+    }
+    
     
 }
