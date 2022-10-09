@@ -15,7 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Database connection/init
-builder.Services.AddDbContext<IncidentContext>(contextOptions => contextOptions.UseInMemoryDatabase("MIC-Database"));
+builder.Services.AddDbContext<MICDbContext>(
+    o => o.UseNpgsql(builder.Configuration.GetConnectionString("testbrandweer")));
 builder.Services.AddScoped<IEntityRepository<Incident>, IncidentRepository>();
 builder.Services.AddScoped<IEntityRepository<Locatie>, LocatieRepository>();
 builder.Services.AddConnections();

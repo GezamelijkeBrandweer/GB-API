@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\GB-API\GB-API.csproj" />
       <ProjectReference Include="..\MIC-RequestSender\MIC-RequestSender.csproj" />
     </ItemGroup>
 

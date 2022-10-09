@@ -5,9 +5,9 @@ namespace GB_API.Server.Data.IncidentDB;
 
 public class IncidentRepository : IEntityRepository<Incident>
 {
-    private readonly IncidentContext _context;
+    private readonly MICDbContext _context;
 
-    public IncidentRepository(IncidentContext context)
+    public IncidentRepository(MICDbContext context)
     {
         _context = context;
     }
@@ -20,6 +20,7 @@ public class IncidentRepository : IEntityRepository<Incident>
     public void Save(Incident incident)
     {
         _context.Add(incident);
+        _context.SaveChanges();
     }
 
     public void DeleteById(long id)

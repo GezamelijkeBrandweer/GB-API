@@ -4,9 +4,9 @@ namespace GB_API.Server.Data.LocatieDB;
 
 public class LocatieRepository : IEntityRepository<Locatie>
 {
-    private readonly LocatieContext _context;
+    private readonly MICDbContext _context;
 
-    public LocatieRepository(LocatieContext context)
+    public LocatieRepository(MICDbContext context)
     {
         _context = context;
     }
@@ -19,6 +19,7 @@ public class LocatieRepository : IEntityRepository<Locatie>
     public void Save(Locatie locatie)
     {
         _context.Add(locatie);
+        _context.SaveChanges();
     }
 
     public void DeleteById(long id)

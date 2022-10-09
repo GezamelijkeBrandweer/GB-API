@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using GB_API.Server.Application;
+using GB_API.Server.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GB_API.Server.Presentation
@@ -11,5 +8,17 @@ namespace GB_API.Server.Presentation
     [ApiController]
     public class IncidentController : ControllerBase
     {
+        private readonly IIncidentService _service;
+
+        public IncidentController(IIncidentService service)
+        {
+            _service = service;
+        }
+
+        [HttpPost]
+        public Incident Save(string name)
+        {
+            return _service.Save(name);
+        }
     }
 }
