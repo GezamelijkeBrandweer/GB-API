@@ -18,4 +18,8 @@
       <Content Include="Properties\launchSettings.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\MIC-RequestSender\MIC-RequestSender.csproj" />
+    </ItemGroup>
+
 </Project>

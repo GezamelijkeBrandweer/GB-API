@@ -51,7 +51,7 @@ public class RequestSender
             stringBuilder.Append($"{queryParam.Key}={queryParam.Value}&");
         }
         // remove last &
-        stringBuilder.Remove(-1, 1);
+        stringBuilder.Remove(stringBuilder.Length -1, 1);
         return stringBuilder.ToString();
     }
 }

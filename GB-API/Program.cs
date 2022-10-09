@@ -18,6 +18,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<IncidentContext>(contextOptions => contextOptions.UseInMemoryDatabase("MIC-Database"));
 builder.Services.AddScoped<IEntityRepository<Incident>, IncidentRepository>();
 builder.Services.AddScoped<IEntityRepository<Locatie>, LocatieRepository>();
+builder.Services.AddScoped<LocatieContext>();
+builder.Services.AddScoped<TrafficService>();
 builder.Services.AddConnections();
 
 // Dependency injection
