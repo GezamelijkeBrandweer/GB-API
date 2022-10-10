@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using GB_API.Server.Domain.VerkeersIncident;
+using GB_API.Server.Domain.Traffic;
 
 namespace GB_API.Server.Domain;
 

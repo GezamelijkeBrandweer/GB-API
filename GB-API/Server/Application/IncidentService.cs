@@ -23,10 +23,10 @@ public class IncidentService : IIncidentService
             .GetAwaiter().GetResult();
         
         // Hopelijk breekt dit niet het opslaan
-        // foreach (var verkeersIncident in verkeersIncidents)
-        // {
-        //     incident.AddVerkeersIncident(verkeersIncident);
-        // }
+        foreach (var verkeersIncident in verkeersIncidents)
+        {
+            incident.AddVerkeersIncident(verkeersIncident);
+        }
         
         _entityRepository.Save(incident);
         return incident;
