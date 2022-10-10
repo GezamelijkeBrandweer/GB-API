@@ -19,6 +19,8 @@ builder.Services.AddDbContext<MICDbContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("testbrandweer")));
 builder.Services.AddScoped<IEntityRepository<Incident>, IncidentRepository>();
 builder.Services.AddScoped<IEntityRepository<Locatie>, LocatieRepository>();
+builder.Services.AddScoped<IEntityRepository<Karakteristiek>, KarakteristiekRepository>();
+builder.Services.AddScoped<IEntityRepository<MeldingsClassificaties>, MeldingClassificatieRepository>();
 builder.Services.AddScoped<TrafficService>();
 builder.Services.AddConnections();
 

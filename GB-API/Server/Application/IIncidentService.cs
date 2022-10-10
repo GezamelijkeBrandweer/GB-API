@@ -4,5 +4,5 @@ namespace GB_API.Server.Application;
 
 public interface IIncidentService
 {
-    Incident Save(string name);
+    Incident Save(string name, MeldingsClassificaties meldingsClassificaties, Karakteristiek karakteristiek);
 }

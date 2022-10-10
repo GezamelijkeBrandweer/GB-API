@@ -6,6 +6,7 @@ namespace GB_API.Server.Domain.VerkeersIncident;
 // Deserializer klasse
 public class TrafficIncident
 {
+    public long Id { get; set; }
     [JsonPropertyName("properties")]
     public TrafficIncidentProperty Properties { get; set; }
     

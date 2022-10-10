@@ -1,4 +1,5 @@
 using GB_API.Server.Domain;
+using GB_API.Server.Domain.VerkeersIncident;
 using Microsoft.EntityFrameworkCore;
 
 namespace GB_API.Server.Data;

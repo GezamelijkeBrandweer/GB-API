@@ -1,9 +1,11 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace GB_API.Server.Domain.VerkeersIncident;
 
 public class TrafficIncidentProperty
 {
+    public long Id { get; set; }
     [JsonPropertyName("iconCategory")]
     public int IconCategory { get; set; }
     
@@ -26,6 +28,7 @@ public class TrafficIncidentProperty
     public int Delay { get; set; }
     
     [JsonPropertyName("roadNumbers")]
+    [NotMapped]
     public List<dynamic> RoadNumbers { get; set; } 
     
     [JsonPropertyName("timeValidity")]
@@ -35,11 +38,12 @@ public class TrafficIncidentProperty
     public string ProbabilityOfOccurrence { get; set; }
     
     [JsonPropertyName("numberOfReports")]
-    public object NumberOfReports { get; set; }
+    public string NumberOfReports { get; set; }
     
     [JsonPropertyName("lastReportTime")]
-    public object LastReportTime { get; set; }
+    public string LastReportTime { get; set; }
 
     [JsonPropertyName("events")]
+    [NotMapped]
     public List<dynamic> Events { get; set; } 
 }
