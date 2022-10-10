@@ -1,5 +1,5 @@
 using GB_API.Server.Domain;
-using GB_API.Server.Domain.VerkeersIncident;
+using GB_API.Server.Domain.Traffic;
 using Microsoft.EntityFrameworkCore;
 
 namespace GB_API.Server.Data;
@@ -10,6 +10,8 @@ public class MICDbContext : DbContext
     public DbSet<Incident> Incidents { get; set; }
     public DbSet<MeldingsClassificaties> MeldingsClassificaties { get; set; }
     public DbSet<Karakteristiek> Karakteristieks { get; set; }
+    
+    public DbSet<TrafficIncident> TrafficIncidents { get; set; }
 
 
     public MICDbContext(DbContextOptions<MICDbContext> options)
