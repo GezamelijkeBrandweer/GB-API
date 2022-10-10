@@ -23,6 +23,7 @@ public class MICDbContext : DbContext
         modelBuilder.Entity<Incident>().Navigation(i => i.Locatie).AutoInclude();
         modelBuilder.Entity<Incident>().Navigation(i => i.KarakteristiekList).AutoInclude();
         modelBuilder.Entity<Incident>().Navigation(i => i.MeldingsClassificaties).AutoInclude();
+        modelBuilder.Entity<Incident>().Navigation(i => i.VerkeersIncidenten).AutoInclude();
         modelBuilder.UseSerialColumns();
     }
 }

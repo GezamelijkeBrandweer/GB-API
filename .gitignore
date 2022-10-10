@@ -16,6 +16,8 @@
 # Mono auto generated files
 mono_crash.*
 
+#Database files
+GB-API/db/pg/data
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
