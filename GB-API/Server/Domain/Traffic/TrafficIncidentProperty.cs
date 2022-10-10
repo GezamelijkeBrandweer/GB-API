@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace GB_API.Server.Domain.VerkeersIncident;
+namespace GB_API.Server.Domain.Traffic;
 
 public class TrafficIncidentProperty
 {
@@ -29,21 +29,21 @@ public class TrafficIncidentProperty
     
     [JsonPropertyName("roadNumbers")]
     [NotMapped]
-    public List<dynamic> RoadNumbers { get; set; } 
+    public List<object> RoadNumbers { get; set; } 
     
     [JsonPropertyName("timeValidity")]
     public string TimeValidity { get; set; }
     
     [JsonPropertyName("probabilityOfOccurrence")]
     public string ProbabilityOfOccurrence { get; set; }
-    
-    [JsonPropertyName("numberOfReports")]
-    public string NumberOfReports { get; set; }
+
+    [JsonPropertyName("numberOfReports")] 
+    public string? NumberOfReports { get; set; }
     
     [JsonPropertyName("lastReportTime")]
-    public string LastReportTime { get; set; }
+    public string? LastReportTime { get; set; }
 
     [JsonPropertyName("events")]
-    [NotMapped]
-    public List<dynamic> Events { get; set; } 
+    // [NotMapped]
+    public List<TrafficIncidentPropertyEvent> Events { get; set; } 
 }

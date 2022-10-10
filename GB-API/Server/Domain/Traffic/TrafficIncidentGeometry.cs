@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace GB_API.Server.Domain.VerkeersIncident;
+namespace GB_API.Server.Domain.Traffic;
 
 public class TrafficIncidentGeometry
 {

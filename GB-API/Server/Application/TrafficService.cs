@@ -1,7 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using GB_API.Server.Domain;
-using GB_API.Server.Domain.VerkeersIncident;
+using GB_API.Server.Domain.Traffic;
 using MIC_RequestSender;
 using MIC_RequestSender.Domain;
 

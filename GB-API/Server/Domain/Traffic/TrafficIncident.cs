@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using GB_API.Server.Domain.VerkeersIncident;
+using GB_API.Server.Domain.Traffic;
 
-namespace GB_API.Server.Domain.VerkeersIncident;
+namespace GB_API.Server.Domain.Traffic;
 
 // Deserializer klasse
 public class TrafficIncident
