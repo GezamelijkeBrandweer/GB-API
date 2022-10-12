@@ -35,4 +35,10 @@ public class MeldingClassificatieRepository : IEntityRepository<MeldingsClassifi
     {
         return _context.MeldingsClassificaties.SingleOrDefault(classificaties => classificaties.Id == id);
     }
+
+    public void SaveList(List<MeldingsClassificaties> meldingen)
+    {
+        _context.AddRange(meldingen);
+        _context.SaveChanges();
+    }
 }
