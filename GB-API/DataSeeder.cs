@@ -22,10 +22,10 @@ public static class DataSeeder
         var xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\Dylla\RiderProjects\GB-API\GB-API\LMC-Data\LMC10.0.1.xlsx");
         _Worksheet xlWorksheet = xlWorkbook.Sheets[3] as Worksheet ?? throw new InvalidOperationException();
         LoadAllKarakteristieken(context, xlWorksheet);
-        LoadAllMeldingClassificaties(context, xlWorksheet);
+        LoadAllMeldingsclassificaties(context, xlWorksheet);
     }
 
-    private static void LoadAllMeldingClassificaties(MICDbContext context, _Worksheet xlWorksheet)
+    private static void LoadAllMeldingsclassificaties(MICDbContext context, _Worksheet xlWorksheet)
     {
         if (context.MeldingsClassificaties.FirstOrDefault() != null) return;
         var meldingList = new List<MeldingsClassificaties>();
@@ -33,12 +33,12 @@ public static class DataSeeder
         var rowCount = xlRange.Rows.Count;
         for (var i = 2; i <= rowCount; i++)
         {
-            var niveau1 = ((xlRange.Cells[i, 1] as Range).Value ?? "").ToString();
-            var niveau2 = ((xlRange.Cells[i, 2] as Range).Value ?? "").ToString();
-            var niveau3 = ((xlRange.Cells[i, 3] as Range).Value ?? "").ToString();
-            var afkorting = ((xlRange.Cells[i, 7] as Range).Value ?? "").ToString();
-            var presentatieTekst = ((xlRange.Cells[i, 8] as Range).Value ?? "").ToString();
-            var definitie = ((xlRange.Cells[i, 12] as Range).Value ?? "").ToString();
+            var niveau1 = ((xlRange.Cells[i, 1] as Range)?.Value ?? "").ToString();
+            var niveau2 = ((xlRange.Cells[i, 2] as Range)?.Value ?? "").ToString();
+            var niveau3 = ((xlRange.Cells[i, 3] as Range)?.Value ?? "").ToString();
+            var afkorting = ((xlRange.Cells[i, 7] as Range)?.Value ?? "").ToString();
+            var presentatieTekst = ((xlRange.Cells[i, 8] as Range)?.Value ?? "").ToString();
+            var definitie = ((xlRange.Cells[i, 12] as Range)?.Value ?? "").ToString();
             meldingList.Add(new MeldingsClassificaties(niveau1,niveau2,niveau3, afkorting, presentatieTekst, definitie));
         }
         context.MeldingsClassificaties.AddRange(meldingList);
