@@ -1,3 +1,4 @@
+using GB_API;
 using GB_API.Server.Application;
 using GB_API.Server.Data;
 using GB_API.Server.Data.IncidentDB;
@@ -44,5 +45,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.Seed();
 app.Run();

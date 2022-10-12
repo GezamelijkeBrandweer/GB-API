@@ -35,4 +35,10 @@ public class KarakteristiekRepository : IEntityRepository<Karakteristiek>
     {
         return _context.Karakteristieks.SingleOrDefault(karakteristiek => karakteristiek.Id == id);
     }
+
+    public void SaveList(IEnumerable<Karakteristiek> karakteristiek)
+    {
+        _context.AddRange(karakteristiek);
+        _context.SaveChanges();
+    }
 }
