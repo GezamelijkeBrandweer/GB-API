@@ -19,11 +19,13 @@ public static class DataSeeder
     private static void SetUpExcelWorkSheet(MICDbContext context)
     {
         var xlApp = new Application();
-        var xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\Dylla\RiderProjects\GB-API\GB-API\LMC-Data\LMC10.0.1.xlsx");
+        var fullPath= Path.GetFullPath("./LMC-Data/LMC10.0.1.xlsx");
+        var xlWorkbook = xlApp.Workbooks.Open(fullPath);
         _Worksheet xlWorksheetMelding = xlWorkbook.Sheets[3] as Worksheet ?? throw new InvalidOperationException();
         _Worksheet xlWorksheetKarakteristieken = xlWorkbook.Sheets[4] as Worksheet ?? throw new InvalidOperationException();
         LoadAllMeldingsclassificaties(context, xlWorksheetMelding);
         LoadAllKarakteristieken(context, xlWorksheetKarakteristieken);
+        xlApp.Workbooks.Close();
     }
 
     private static void LoadAllMeldingsclassificaties(MICDbContext context, _Worksheet xlWorksheet)
