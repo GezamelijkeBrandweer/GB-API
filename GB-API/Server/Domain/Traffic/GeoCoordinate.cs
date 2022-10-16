@@ -2,19 +2,15 @@ using System.Globalization;
 
 namespace GB_API.Server.Domain.Traffic;
 
-//https://stackoverflow.com/questions/6151625/should-i-use-a-struct-or-a-class-to-represent-a-lat-lng-coordinate
-public struct GeoCoordinate
+public readonly struct GeoCoordinate
 {
-    private readonly double _latitude;
-    private readonly double _longitude;
-
-    public double Latitude => _latitude;
-    public double Longitude => _longitude;
+    public double Latitude { get; }
+    public double Longitude { get; }
 
     public GeoCoordinate(double latitude, double longitude)
     {
-        this._latitude = latitude;
-        this._longitude = longitude;
+        this.Latitude = latitude;
+        this.Longitude = longitude;
     }
 
     public override string ToString()
