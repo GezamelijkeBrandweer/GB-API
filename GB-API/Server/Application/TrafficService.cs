@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Text.Json.Nodes;
-using GB_API.Server.Domain;
 using GB_API.Server.Domain.Traffic;
 using MIC_RequestSender;
 using MIC_RequestSender.Domain;
@@ -48,7 +47,7 @@ public class TrafficService
         
         // BBOX tekenen: http://bboxfinder.com
         //Console.WriteLine(bbox.ToStringLonFirst());
-
+        
         Dictionary<string, string> queryParams = new()
         {
             { "bbox", bbox.ToStringLonFirst() },
@@ -60,6 +59,7 @@ public class TrafficService
             { "key", _key.Value }
         };
 
+        // RoadWorks (nummer 9 bij categoryFilter) zou als het niet nodig is weggehaald kunnen worden
         var client = RequestSender.HttpClientBuilder(_tomtomTrafficApi.BaseUrl);
         const string optionalUri = "?language=en-GB&categoryFilter=0,1,2,3,4,5,6,7,8,9,10,11,14&timeValidityFilter=present&";
         var node = await RequestSender.SendRequest(client, RequestMethod.Get, optionalUri, queryParams);
@@ -126,11 +126,19 @@ public class TrafficService
              trafficIncident.Delay = dictionary["delay"].ToObject<int>();
              trafficIncident.RoadNumbers = dictionary["roadNumbers"].ToObject<string[]?>();
              trafficIncident.LastReportTime = dictionary["lastReportTime"].ToString();
-             
-             //TODO Deze velden implementeren
-             //incident.Events = dictionary["events"];
-             //incident.Coordinates = dictionary["coordinates"];
             
+             var coordinateList = dictionary["coordinates"].ToObject<List<List<double>>>();
+             foreach (var coordinates in coordinateList!)
+             {
+                 var longitude = coordinates[0];
+                 var latitude = coordinates[1];
+
+                 trafficIncident.Coordinates.Add(new GeoCoordinate(latitude, longitude));
+             }
+
+             var eventList = dictionary["events"].ToObject<List<TrafficIncidentEvent>>();
+             eventList!.ForEach(tEvent => trafficIncident.Events.Add(tEvent));
+
              trafficIncidents.Add(trafficIncident);
         }
         return trafficIncidents;
