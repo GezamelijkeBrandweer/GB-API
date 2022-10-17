@@ -11,7 +11,7 @@ public class Incident
     public Locatie Locatie { get; set; }
 
     public int IntensiteitPunten { get; set; }
-    public List<Karakteristiek> KarakteristiekList { get; set; } = new();
+    public ICollection<Karakteristiek> KarakteristiekList { get; set; } 
     public MeldingsClassificaties MeldingsClassificaties { get; set; } = new();
 
     public List<TrafficIncident> VerkeersIncidenten { get; set; } = new();

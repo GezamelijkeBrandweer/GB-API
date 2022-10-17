@@ -23,7 +23,7 @@ public class MICDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //Configure default schema
-        modelBuilder.HasDefaultSchema("MIC-DB");
+        modelBuilder.HasDefaultSchema("MIC_DB");
         
         //map entity to table
         modelBuilder.Entity<Incident>().ToTable("incident");
@@ -32,8 +32,7 @@ public class MICDbContext : DbContext
         modelBuilder.Entity<Locatie>().ToTable("locatie");
         
         //Configure relation karakteristiek Incident
-        modelBuilder.Entity<Incident>().HasMany(i => i.KarakteristiekList);
-
+        modelBuilder.Entity<Incident>().HasMany(i => i.KarakteristiekList).WithMany("_incidents");
 
 
         modelBuilder.Entity<Incident>().Navigation(i => i.Locatie).AutoInclude();

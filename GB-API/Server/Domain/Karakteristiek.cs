@@ -9,6 +9,7 @@ public class Karakteristiek
     public string Waarde { get; set; }
     
     public int IntensiteitPunten { get; set; }
+    private ICollection<Incident> _incidents;
 
     public Karakteristiek() { }
 
