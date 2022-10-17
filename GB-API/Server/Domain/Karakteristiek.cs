@@ -7,14 +7,17 @@ public class Karakteristiek
     public string Type { get; set; }
     public int VolgNr { get; set; }
     public string Waarde { get; set; }
+    
+    public int IntensiteitPunten { get; set; }
 
     public Karakteristiek() { }
 
-    public Karakteristiek(string naam, string type, int volgNr, string waarde)
+    public Karakteristiek(string naam, string type, int volgNr, string waarde, int intensiteitPunten)
     {
         Naam = naam;
         Type = type;
         VolgNr = volgNr;
         Waarde = waarde;
+        IntensiteitPunten = intensiteitPunten;
     }
 }

@@ -9,10 +9,11 @@ public class MeldingsClassificaties
     public string Afkorting { get; set; }
     public string PresentatieTekst { get; set; }
     public string Definitie { get; set; }
+    public int IntensiteitPunten { get; set; }
 
     public MeldingsClassificaties(){ }
 
-    public MeldingsClassificaties(string niveau1, string niveau2, string niveau3, string afkorting, string presentatieTekst, string definitie)
+    public MeldingsClassificaties(string niveau1, string niveau2, string niveau3, string afkorting, string presentatieTekst, string definitie, int intensiteitPunten)
     {
         Niveau1 = niveau1;
         Niveau2 = niveau2;
@@ -20,5 +21,6 @@ public class MeldingsClassificaties
         Afkorting = afkorting;
         PresentatieTekst = presentatieTekst;
         Definitie = definitie;
+        IntensiteitPunten = intensiteitPunten;
     }
 }

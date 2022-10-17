@@ -2,7 +2,6 @@ version: "3.9"
 services:
   pg:
     image: postgres
-    restart: always
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
@@ -12,7 +11,6 @@ services:
       POSTGRES_PASSWORD: brandweer
   pgadmin:
     image: dpage/pgadmin4
-    restart: always
     ports:
       - "127.0.0.1:9091:80" 
     volumes:

@@ -32,6 +32,7 @@ public static class DataSeeder
     {
         if (context.MeldingsClassificaties.FirstOrDefault() != null) return;
         var meldingList = new List<MeldingsClassificaties>();
+        var random = new Random();
         var xlRange = xlWorksheet.UsedRange;
         var rowCount = xlRange.Rows.Count;
         for (var i = 2; i <= rowCount; i++)
@@ -42,7 +43,7 @@ public static class DataSeeder
             var afkorting = ((xlRange.Cells[i, 7] as Range)?.Value ?? "").ToString()!;
             var presentatieTekst = ((xlRange.Cells[i, 8] as Range)?.Value ?? "").ToString()!;
             var definitie = ((xlRange.Cells[i, 12] as Range)?.Value ?? "").ToString()!;
-            meldingList.Add(new MeldingsClassificaties(niveau1,niveau2,niveau3, afkorting, presentatieTekst, definitie));
+            meldingList.Add(new MeldingsClassificaties(niveau1,niveau2,niveau3, afkorting, presentatieTekst, definitie, random.Next(0,21)));
         }
         context.MeldingsClassificaties.AddRange(meldingList);
         context.SaveChanges();
@@ -51,6 +52,7 @@ public static class DataSeeder
     private static void LoadAllKarakteristieken(MICDbContext context, _Worksheet xlWorksheet)
     {
         var karakteristiek = context.Karakteristieks.FirstOrDefault();
+        var random = new Random();
         if (karakteristiek != null) return;
         var karakteristiekList = new List<Karakteristiek>();
         var xlRange = xlWorksheet.UsedRange;
@@ -63,7 +65,7 @@ public static class DataSeeder
             var naam = (xlRange.Cells[i, 1] as Range).Value.ToString();
             var type = ((xlRange.Cells[i, 2] as Range).Value ?? "").ToString();
             var waarde = ((xlRange.Cells[i, 4] as Range).Value ?? "").ToString();
-            karakteristiekList.Add(new Karakteristiek(naam,type, volgNr, waarde));
+            karakteristiekList.Add(new Karakteristiek(naam,type, volgNr, waarde, random.Next(0,21) ));
         }
         context.Karakteristieks.AddRange(karakteristiekList);
         context.SaveChanges();
