@@ -17,20 +17,22 @@ public class TrafficService
     {
         // uiteindelijk komt dit ergens anders
 
-        _key = new Key("ntW0IQTDLc9EBgSzbrmjTCR5DBrSuIgH");
-        _tomtomTrafficApi = new Dataset
-        {
-            Name = "TomTom-Traffic",
-            KeyInHeader = false,
-            BaseUrl = "https://api.tomtom.com/traffic/services/5/incidentDetails"
-        };
-
-        _geocoding = new Dataset
-        {
-            Name = "TomTom-Geocoding",
-            KeyInHeader = false,
-            BaseUrl = "https://api.tomtom.com/search/2/geocode/"
-        };
+        _key = new Key("ntW0IQTDLc9EBgSzbrmjTCR5DBrSuIgH", KeyType.Primary);
+        // _tomtomTrafficApi = new Dataset
+        // {
+        //     Name = "TomTom-Traffic",
+        //     KeyInHeader = false,
+        //     BaseUrl = "https://api.tomtom.com/traffic/services/5/incidentDetails"
+        // };
+        //
+        // _geocoding = new Dataset
+        // {
+        //     Name = "TomTom-Geocoding",
+        //     KeyInHeader = false,
+        //     BaseUrl = "https://api.tomtom.com/search/2/geocode/"
+        // };
+        _tomtomTrafficApi = new Dataset("TomTom-Traffic", false, "https://api.tomtom.com/traffic/services/5/incidentDetails");
+        _geocoding = new Dataset("TomTom-Geocoding", false, "https://api.tomtom.com/search/2/geocode/");
     }
 
     public async Task<List<TrafficIncident>?> GetTrafficIncidentsIn(string query, 

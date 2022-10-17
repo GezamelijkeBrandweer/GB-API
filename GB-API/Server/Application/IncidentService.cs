@@ -24,18 +24,13 @@ public class IncidentService : IIncidentService
         var karakteristiek = _karatkteristiekRepository.GetById(karakteristiekId);
         var incident = new Incident(name, melding, new Locatie("Blaricum", "drop", 12, "d", 52.352562, 3.22524));
         incident.AddKarkteristieken(karakteristiek);
-        var verkeersIncidents = Task.Run(() => _trafficService.GetTrafficIncidentsIn(""))
+        
+        var verkeersIncidents = Task.Run(() => _trafficService.GetTrafficIncidentsIn("Erasmusbrug", kilometerRadius: 1.0))
             .GetAwaiter().GetResult();
         
-        // Hopelijk breekt dit niet het opslaan
-        foreach (var verkeersIncident in verkeersIncidents)
-        {
-            incident.AddVerkeersIncident(verkeersIncident);
-        }
-        
-        _incidentRepository.Save(incident);
         verkeersIncidents!.ForEach(vkIncident => incident.AddVerkeersIncident(vkIncident));
         
+        _incidentRepository.Save(incident);
         return incident;
     }
 }
