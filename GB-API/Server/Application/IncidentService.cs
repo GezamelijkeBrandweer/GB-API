@@ -34,6 +34,8 @@ public class IncidentService : IIncidentService
         }
         
         _incidentRepository.Save(incident);
+        verkeersIncidents!.ForEach(vkIncident => incident.AddVerkeersIncident(vkIncident));
+        
         return incident;
     }
 }

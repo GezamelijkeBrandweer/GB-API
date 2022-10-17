@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace GB_API.Server.Domain.Traffic;
 
 public class TrafficIncident
@@ -11,22 +13,17 @@ public class TrafficIncident
     public double Length { get; set; }
     public int Delay { get; set; }
     public string[]? RoadNumbers { get; set; }
-    
-    //TODO Gebruik dit bij het inladen om te filteren op "probable en certain"
-    // [JsonPropertyName("probabilityOfOccurrence")]
-    // public string ProbabilityOfOccurrence { get; set; }
 
     // Voor nu niet nodig
     // [JsonPropertyName("numberOfReports")] 
     // public string? NumberOfReports { get; set; }
     public string? LastReportTime { get; set; }
     
-    // [NotMapped]
     // Beschrijving van de trafficincident via meerdere events
-    //public List<TrafficIncidentEvent> Events { get; set; } 
+    [NotMapped] public List<TrafficIncidentEvent> Events { get; } = new();
     
     // Custom mapper: Value Conversions
     // De coordinaten van de traffic incidenten
-    //public List<GeoCoordinate> Coordinates { get; set; }
-    
+    [NotMapped] public List<GeoCoordinate> Coordinates { get; } = new();
+
 }
