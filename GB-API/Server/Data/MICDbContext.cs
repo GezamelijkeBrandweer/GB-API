@@ -23,7 +23,7 @@ public class MICDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //Configure default schema
-        modelBuilder.HasDefaultSchema("MIC_DB");
+        modelBuilder.HasDefaultSchema("MIC-DB");
         
         //map entity to table
         modelBuilder.Entity<Incident>().ToTable("incident");
@@ -40,6 +40,7 @@ public class MICDbContext : DbContext
         
 
 
+        // Auto include every class when the Incident object is queried
         modelBuilder.Entity<Incident>().Navigation(i => i.Locatie).AutoInclude();
         modelBuilder.Entity<Incident>().Navigation(i => i.KarakteristiekList).AutoInclude();
         modelBuilder.Entity<Incident>().Navigation(i => i.MeldingsClassificaties).AutoInclude();
