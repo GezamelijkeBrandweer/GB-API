@@ -26,4 +26,7 @@ public class TrafficIncident
     // De coordinaten van de traffic incidenten
     [NotMapped] public List<GeoCoordinate> Coordinates { get; } = new();
 
+    // private list voor many-to-many relatie 
+    private ICollection<Incident> _incidents;
+
 }

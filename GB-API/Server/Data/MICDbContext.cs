@@ -30,9 +30,14 @@ public class MICDbContext : DbContext
         modelBuilder.Entity<Karakteristiek>().ToTable("karakteriestiek");
         modelBuilder.Entity<MeldingsClassificaties>().ToTable("meldingClassificatie");
         modelBuilder.Entity<Locatie>().ToTable("locatie");
+        modelBuilder.Entity<TrafficIncident>().ToTable("trafficIncident");
         
-        //Configure relation karakteristiek Incident
+        //Configure relations
         modelBuilder.Entity<Incident>().HasMany(i => i.KarakteristiekList).WithMany("_incidents");
+        modelBuilder.Entity<Incident>().HasMany(i => i.VerkeersIncidenten).WithMany("_incidents");
+        modelBuilder.Entity<Incident>().HasOne(i => i.Locatie);
+        modelBuilder.Entity<Incident>().HasOne(i => i.MeldingsClassificaties);
+        
 
 
         modelBuilder.Entity<Incident>().Navigation(i => i.Locatie).AutoInclude();

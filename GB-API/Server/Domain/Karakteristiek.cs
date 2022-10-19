@@ -9,6 +9,7 @@ public class Karakteristiek
     public string Waarde { get; set; }
     
     public int IntensiteitPunten { get; set; }
+    // deze private list is voor de many-to-many voor incident.
     private ICollection<Incident> _incidents;
 
     public Karakteristiek() { }

@@ -29,6 +29,7 @@ public class Incident
         Name = name;
         Locatie = locatie;
         MeldingsClassificaties = meldingsClassificaties;
+        UpdateIntensiteitPunten();
     }
     
     public void AddVerkeersIncident(TrafficIncident verkeersIncident)
@@ -38,7 +39,15 @@ public class Incident
     public void AddKarkteristieken(Karakteristiek karakteristiek)
     {
         KarakteristiekList.Add(karakteristiek);
+        UpdateIntensiteitPunten();
     }
-    
+
+    private void UpdateIntensiteitPunten()
+    {
+        int tempPunten = KarakteristiekList.Sum(karakteristiek => karakteristiek.IntensiteitPunten);
+        tempPunten += MeldingsClassificaties.IntensiteitPunten;
+        IntensiteitPunten = tempPunten;
+
+    }
     
 }
