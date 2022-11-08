@@ -27,7 +27,14 @@ public class IncidentService : IIncidentService
         
         incident.Karakteristieken.Add(karakteristiek!);
         incident.Meldingsclassificaties.Add(melding!);
-        incident.Intensiteit = new Intensiteit(50, new Dienst("Brandweer"));
+        //incident.Intensiteit = new Intensiteit(50, new Dienst("Brandweer"));
+
+        // Dienst aanmaken en dan daar de intensiteiten toevoegen
+        Dienst dienst = new Dienst("Brandweer");
+        dienst.AddKarakteristiekIntensiteit(25, incident.Karakteristieken.First());
+        dienst.AddMeldingsclassificatieIntensiteit(10, incident.Meldingsclassificaties.First());
+        
+        incident.AddIntensiteit(dienst);
 
         _incidentRepository.Save(incident);
         return incident;

@@ -3,18 +3,20 @@ namespace GB_API.Server.Domain;
 public class MeldingsclassificatieIntensiteit
 {
     public long Id { get; set; }
-    public string Punten { get; set; }
+    public int Punten { get; set; }
     
     public Dienst Dienst { get; set; }
+    
+    public Meldingsclassificatie Meldingsclassificatie { get; set; }
     
     public MeldingsclassificatieIntensiteit()
     {
     }
     
-    public MeldingsclassificatieIntensiteit(long id, string punten, Dienst dienst)
+    public MeldingsclassificatieIntensiteit(int punten, Dienst dienst, Meldingsclassificatie meldingsclassificatie)
     {
-        Id = id;
         Punten = punten;
         Dienst = dienst;
+        Meldingsclassificatie = meldingsclassificatie;
     }
 }

@@ -1,5 +1,4 @@
 using GB_API.Server.Domain;
-using GB_API.Server.Domain.Traffic;
 using Microsoft.EntityFrameworkCore;
 
 namespace GB_API.Server.Data;

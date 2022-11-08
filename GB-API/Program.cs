@@ -4,7 +4,6 @@ using GB_API.Server.Data;
 using GB_API.Server.Data.IncidentDB;
 using GB_API.Server.Data.LocatieDB;
 using GB_API.Server.Domain;
-using GB_API.Server.Domain.Traffic;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
