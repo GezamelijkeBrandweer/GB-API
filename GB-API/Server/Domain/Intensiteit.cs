@@ -1,7 +1,15 @@
 namespace GB_API.Server.Domain;
 
-public class IntensiteitPunten
+public class Intensiteit
 {
-    public string Naam { get; set; }
-    public int Punten { get; set; }
+    public long Id { get; set; }
+    public int Score { get; set; }
+    public Dienst Dienst { get; set; }
+    
+    
+    public Intensiteit(int score, Dienst dienst)
+    {
+        Score = score;
+        Dienst = dienst;
+    }
 }

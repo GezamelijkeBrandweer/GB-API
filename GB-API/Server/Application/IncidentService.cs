@@ -7,13 +7,11 @@ public class IncidentService : IIncidentService
 {
     private readonly IEntityRepository<Incident> _incidentRepository;
     private readonly IEntityRepository<Karakteristiek> _karatkteristiekRepository;
-    private readonly IEntityRepository<MeldingsClassificaties> _meldingRepository;
-    private readonly TrafficService _trafficService;
+    private readonly IEntityRepository<Meldingsclassificatie> _meldingRepository;
 
-    public IncidentService(IEntityRepository<Incident> incidentRepository, TrafficService trafficService, IEntityRepository<Karakteristiek> karatkteristiekRepository, IEntityRepository<MeldingsClassificaties> meldingRepository)
+    public IncidentService(IEntityRepository<Incident> incidentRepository, IEntityRepository<Karakteristiek> karatkteristiekRepository, IEntityRepository<Meldingsclassificatie> meldingRepository)
     {
         _incidentRepository = incidentRepository;
-        _trafficService = trafficService;
         _karatkteristiekRepository = karatkteristiekRepository;
         _meldingRepository = meldingRepository;
     }
@@ -22,14 +20,15 @@ public class IncidentService : IIncidentService
     {
         var melding = _meldingRepository.GetById(meldingId);
         var karakteristiek = _karatkteristiekRepository.GetById(karakteristiekId);
-        var incident = new Incident(name, melding, new Locatie("Blaricum", "drop", 12, "d", 52.352562, 3.22524));
-        incident.AddKarkteristieken(karakteristiek);
+
+        var locatie = new Locatie("Hoekseweg", "3723EA", "33A", 52.352562, 3.22524);
         
-        var verkeersIncidents = Task.Run(() => _trafficService.GetTrafficIncidentsIn("Erasmusbrug", kilometerRadius: 1.0))
-            .GetAwaiter().GetResult();
+        var incident = new Incident(name, locatie);
         
-        verkeersIncidents!.ForEach(vkIncident => incident.AddVerkeersIncident(vkIncident));
-        
+        incident.Karakteristieken.Add(karakteristiek!);
+        incident.Meldingsclassificaties.Add(melding!);
+        incident.Intensiteit = new Intensiteit(50, new Dienst("Brandweer"));
+
         _incidentRepository.Save(incident);
         return incident;
     }

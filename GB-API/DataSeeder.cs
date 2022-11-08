@@ -31,7 +31,7 @@ public static class DataSeeder
     private static void LoadAllMeldingsclassificaties(MICDbContext context, _Worksheet xlWorksheet)
     {
         if (context.MeldingsClassificaties.FirstOrDefault() != null) return;
-        var meldingList = new List<MeldingsClassificaties>();
+        var meldingList = new List<Meldingsclassificatie>();
         var random = new Random();
         var xlRange = xlWorksheet.UsedRange;
         var rowCount = xlRange.Rows.Count;
@@ -43,7 +43,7 @@ public static class DataSeeder
             var afkorting = ((xlRange.Cells[i, 7] as Range)?.Value ?? "").ToString()!;
             var presentatieTekst = ((xlRange.Cells[i, 8] as Range)?.Value ?? "").ToString()!;
             var definitie = ((xlRange.Cells[i, 12] as Range)?.Value ?? "").ToString()!;
-            meldingList.Add(new MeldingsClassificaties(niveau1,niveau2,niveau3, afkorting, presentatieTekst, definitie, random.Next(0,21)));
+            meldingList.Add(new Meldingsclassificatie(niveau1,niveau2,niveau3, afkorting, presentatieTekst, definitie, random.Next(0,21)));
         }
         context.MeldingsClassificaties.AddRange(meldingList);
         context.SaveChanges();
