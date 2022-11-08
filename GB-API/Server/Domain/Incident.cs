@@ -9,45 +9,17 @@ public class Incident
     public long Id { get; set; }
     public string Name { get; set; }
     public Locatie Locatie { get; set; }
-
-    public int IntensiteitPunten { get; set; }
-    public ICollection<Karakteristiek> KarakteristiekList { get; set; } 
-    public MeldingsClassificaties MeldingsClassificaties { get; set; } = new();
-
-    public List<TrafficIncident> VerkeersIncidenten { get; set; } = new();
+    public Intensiteit Intensiteit { get; set; }
+    public ICollection<Karakteristiek> Karakteristieken { get; set; } 
+    public ICollection<Meldingsclassificatie> Meldingsclassificaties { get; set; }
 
     public Incident(){}
-    
+
     public Incident(string name, Locatie locatie)
     {
         Name = name;
         Locatie = locatie;
+        Karakteristieken = new List<Karakteristiek>();
+        Meldingsclassificaties = new List<Meldingsclassificatie>()
     }
-    
-    public Incident(string name, MeldingsClassificaties meldingsClassificaties ,Locatie locatie)
-    {
-        Name = name;
-        Locatie = locatie;
-        MeldingsClassificaties = meldingsClassificaties;
-        UpdateIntensiteitPunten();
-    }
-    
-    public void AddVerkeersIncident(TrafficIncident verkeersIncident)
-    {
-        this.VerkeersIncidenten.Add(verkeersIncident);
-    }
-    public void AddKarkteristieken(Karakteristiek karakteristiek)
-    {
-        KarakteristiekList.Add(karakteristiek);
-        UpdateIntensiteitPunten();
-    }
-
-    private void UpdateIntensiteitPunten()
-    {
-        int tempPunten = KarakteristiekList.Sum(karakteristiek => karakteristiek.IntensiteitPunten);
-        tempPunten += MeldingsClassificaties.IntensiteitPunten;
-        IntensiteitPunten = tempPunten;
-
-    }
-    
 }
