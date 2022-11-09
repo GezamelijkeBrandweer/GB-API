@@ -19,9 +19,7 @@ public class Intensiteit
     
     private int GetTotalScore()
     {
-        var total = _score;
-        
-        if (total > 0) return total;
+        int total = 0;
 
         var kIntensiteiten = Dienst.KarakteristiekIntensiteiten;
         var mIntensiteiten = Dienst.MeldingsclassificatieIntensiteiten;
