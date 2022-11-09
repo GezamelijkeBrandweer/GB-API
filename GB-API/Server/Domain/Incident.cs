@@ -1,8 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using GB_API.Server.Domain.Traffic;
-
-namespace GB_API.Server.Domain;
+﻿namespace GB_API.Server.Domain;
 
 public class Incident
 {
@@ -20,6 +16,6 @@ public class Incident
         Name = name;
         Locatie = locatie;
         Karakteristieken = new List<Karakteristiek>();
-        Meldingsclassificaties = new List<Meldingsclassificatie>()
+        Meldingsclassificaties = new List<Meldingsclassificatie>();
     }
 }
