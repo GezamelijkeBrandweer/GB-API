@@ -28,7 +28,7 @@ public class MICDbContext : DbContext
 
         //Configure relations
         modelBuilder.Entity<Incident>().HasMany(i => i.Karakteristieken).WithMany("_incidents");
-        modelBuilder.Entity<Incident>().HasMany(i => i.Meldingsclassificaties).WithMany("_incidents");
+        modelBuilder.Entity<Incident>().HasOne(i => i.Meldingsclassificatie);
         modelBuilder.Entity<Incident>().HasOne(i => i.Locatie);
         
         modelBuilder.UseSerialColumns();

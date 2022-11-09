@@ -9,8 +9,8 @@ public class Incident
     public string Name { get; set; }
     public Locatie Locatie { get; set; }
     public ICollection<Intensiteit> Intensiteiten { get; set; } 
-    public ICollection<Karakteristiek> Karakteristieken { get; set; } 
-    public ICollection<Meldingsclassificatie> Meldingsclassificaties { get; set; }
+    public ICollection<Karakteristiek> Karakteristieken { get; set; }
+    public Meldingsclassificatie Meldingsclassificatie { get; set; }
 
     public Incident(){}
 
@@ -19,7 +19,6 @@ public class Incident
         Name = name;
         Locatie = locatie;
         Karakteristieken = new List<Karakteristiek>();
-        Meldingsclassificaties = new List<Meldingsclassificatie>();
         Intensiteiten = new List<Intensiteit>();
     }
 
