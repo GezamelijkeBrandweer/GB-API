@@ -11,9 +11,6 @@ public class Meldingsclassificatie
     public string Definitie { get; set; }
     public string  PresentatieTekst { get; set; }
     
-    // deze private list is voor de many-to-many voor incident.
-    private ICollection<Incident> _incidents;
-    
     public Meldingsclassificatie(){ }
     
     public Meldingsclassificatie(string naam)
