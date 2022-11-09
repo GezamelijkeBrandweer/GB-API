@@ -1,7 +1,7 @@
 ﻿
 using GB_API.Server.Domain;
 
-namespace GB_API.Server.Data.IncidentDB;
+namespace GB_API.Server.Data;
 
 public class IncidentRepository : IEntityRepository<Incident>
 {
