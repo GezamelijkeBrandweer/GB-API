@@ -64,7 +64,7 @@ public static class DataSeeder
             var naam = (xlRange.Cells[i, 1] as Range).Value.ToString();
             var type = ((xlRange.Cells[i, 2] as Range).Value ?? "").ToString();
             var waarde = ((xlRange.Cells[i, 4] as Range).Value ?? "").ToString();
-            karakteristiekList.Add(new Karakteristiek(naam,type, volgNr, waarde));
+            karakteristiekList.Add(new Karakteristiek(naam,type, waarde, volgNr));
         }
         context.Karakteristieks.AddRange(karakteristiekList);
         context.SaveChanges();

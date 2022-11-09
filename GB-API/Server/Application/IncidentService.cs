@@ -23,7 +23,7 @@ public class IncidentService : IIncidentService
 
         var locatie = new Locatie("Hoekseweg", "3723EA", "33A", 52.352562, 3.22524);
         
-        var incident = new Incident(name, locatie);
+        var incident = new Incident(name, locatie, melding);
         
         incident.Karakteristieken.Add(karakteristiek!);
         incident.Meldingsclassificatie = melding!;

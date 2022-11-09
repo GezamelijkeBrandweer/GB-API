@@ -11,10 +11,11 @@ public class Incident
 
     public Incident(){}
 
-    public Incident(string name, Locatie locatie)
+    public Incident(string name, Locatie locatie, Meldingsclassificatie meldingsclassificatie)
     {
         Name = name;
         Locatie = locatie;
+        Meldingsclassificatie = meldingsclassificatie;
         Karakteristieken = new List<Karakteristiek>();
         Intensiteiten = new List<Intensiteit>();
     }
