@@ -3,18 +3,18 @@ namespace GB_API.Server.Domain;
 public class Intensiteit
 {
     public long Id { get; set; }
-
-    private int _score;
-    public int Score
-    {
-        get => GetTotalScore();
-        set => _score = value;
-    }
+    public int Score { get; }
     public Dienst Dienst { get; set; }
+
+    public Intensiteit()
+    {
+        
+    }
     
     public Intensiteit(Dienst dienst)
     {
         Dienst = dienst;
+        Score = GetTotalScore();
     }
     
     private int GetTotalScore()
