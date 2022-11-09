@@ -9,6 +9,7 @@ public class MICDbContext : DbContext
     public DbSet<Incident> Incidents { get; set; }
     public DbSet<Meldingsclassificatie> MeldingsClassificaties { get; set; }
     public DbSet<Karakteristiek> Karakteristieks { get; set; }
+    public DbSet<Dienst> Diensten { get; set; }
 
     public MICDbContext(DbContextOptions<MICDbContext> options)
         : base(options)
