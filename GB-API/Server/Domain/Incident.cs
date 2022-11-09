@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using GB_API.Server.Domain.Traffic;
 
 namespace GB_API.Server.Domain;
 
@@ -9,45 +8,22 @@ public class Incident
     public long Id { get; set; }
     public string Name { get; set; }
     public Locatie Locatie { get; set; }
-
-    public int IntensiteitPunten { get; set; }
-    public ICollection<Karakteristiek> KarakteristiekList { get; set; } 
-    public MeldingsClassificaties MeldingsClassificaties { get; set; } = new();
-
-    public List<TrafficIncident> VerkeersIncidenten { get; set; } = new();
+    public ICollection<Intensiteit> Intensiteiten { get; set; } 
+    public ICollection<Karakteristiek> Karakteristieken { get; set; }
+    public Meldingsclassificatie Meldingsclassificatie { get; set; }
 
     public Incident(){}
-    
+
     public Incident(string name, Locatie locatie)
     {
         Name = name;
         Locatie = locatie;
-    }
-    
-    public Incident(string name, MeldingsClassificaties meldingsClassificaties ,Locatie locatie)
-    {
-        Name = name;
-        Locatie = locatie;
-        MeldingsClassificaties = meldingsClassificaties;
-        UpdateIntensiteitPunten();
-    }
-    
-    public void AddVerkeersIncident(TrafficIncident verkeersIncident)
-    {
-        this.VerkeersIncidenten.Add(verkeersIncident);
-    }
-    public void AddKarkteristieken(Karakteristiek karakteristiek)
-    {
-        KarakteristiekList.Add(karakteristiek);
-        UpdateIntensiteitPunten();
+        Karakteristieken = new List<Karakteristiek>();
+        Intensiteiten = new List<Intensiteit>();
     }
 
-    private void UpdateIntensiteitPunten()
+    public void AddIntensiteit(Dienst dienst)
     {
-        int tempPunten = KarakteristiekList.Sum(karakteristiek => karakteristiek.IntensiteitPunten);
-        tempPunten += MeldingsClassificaties.IntensiteitPunten;
-        IntensiteitPunten = tempPunten;
-
+        Intensiteiten.Add(new Intensiteit(dienst));
     }
-    
 }
