@@ -4,15 +4,27 @@ public class Meldingsclassificatie
 {
     public long Id { get; set; }
     public string Naam { get; set; }
-    
-    // deze private list is voor de many-to-many voor incident.
-    private ICollection<Incident> _incidents;
+    public string Niveau1 { get; set; }
+    public string Niveau2 { get; set; }
+    public string Niveau3 { get; set; }
+    public string Afkorting { get; set; }
+    public string Definitie { get; set; }
+    public string  PresentatieTekst { get; set; }
     
     public Meldingsclassificatie(){ }
     
-    public Meldingsclassificatie(long id, string naam)
+    public Meldingsclassificatie(string naam)
     {
-        Id = id;
         Naam = naam;
+    }
+
+    public Meldingsclassificatie(string niveau1, string niveau2, string niveau3, string afkorting, string definitie, string presentatieTekst)
+    {
+        Niveau1 = niveau1;
+        Niveau2 = niveau2;
+        Niveau3 = niveau3;
+        Afkorting = afkorting;
+        Definitie = definitie;
+        PresentatieTekst = presentatieTekst;
     }
 }

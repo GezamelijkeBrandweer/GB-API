@@ -32,7 +32,6 @@ public static class DataSeeder
     {
         if (context.MeldingsClassificaties.FirstOrDefault() != null) return;
         var meldingList = new List<Meldingsclassificatie>();
-        var random = new Random();
         var xlRange = xlWorksheet.UsedRange;
         var rowCount = xlRange.Rows.Count;
         for (var i = 2; i <= rowCount; i++)
@@ -43,7 +42,7 @@ public static class DataSeeder
             var afkorting = ((xlRange.Cells[i, 7] as Range)?.Value ?? "").ToString()!;
             var presentatieTekst = ((xlRange.Cells[i, 8] as Range)?.Value ?? "").ToString()!;
             var definitie = ((xlRange.Cells[i, 12] as Range)?.Value ?? "").ToString()!;
-            meldingList.Add(new Meldingsclassificatie(niveau1,niveau2,niveau3, afkorting, presentatieTekst, definitie, random.Next(0,21)));
+            meldingList.Add(new Meldingsclassificatie(niveau1,niveau2,niveau3, afkorting, presentatieTekst, definitie));
         }
         context.MeldingsClassificaties.AddRange(meldingList);
         context.SaveChanges();
@@ -65,7 +64,7 @@ public static class DataSeeder
             var naam = (xlRange.Cells[i, 1] as Range).Value.ToString();
             var type = ((xlRange.Cells[i, 2] as Range).Value ?? "").ToString();
             var waarde = ((xlRange.Cells[i, 4] as Range).Value ?? "").ToString();
-            karakteristiekList.Add(new Karakteristiek(naam,type, volgNr, waarde, random.Next(0,21) ));
+            karakteristiekList.Add(new Karakteristiek(naam,type, volgNr, waarde));
         }
         context.Karakteristieks.AddRange(karakteristiekList);
         context.SaveChanges();

@@ -1,6 +1,3 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace GB_API.Server.Domain;
 
 public class Incident

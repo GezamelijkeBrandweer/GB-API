@@ -22,14 +22,21 @@ public class MICDbContext : DbContext
 
         //map entity to table
         modelBuilder.Entity<Incident>().ToTable("incident");
+        modelBuilder.Entity<Dienst>().ToTable("dienst");
+        modelBuilder.Entity<Intensiteit>().ToTable("intensiteit");
         modelBuilder.Entity<Karakteristiek>().ToTable("karakteriestiek");
+        modelBuilder.Entity<KarakteristiekIntensiteit>().ToTable("kIntensiteit");
         modelBuilder.Entity<Meldingsclassificatie>().ToTable("meldingClassificatie");
+        modelBuilder.Entity<MeldingsclassificatieIntensiteit>().ToTable("mIntensiteit");
         modelBuilder.Entity<Locatie>().ToTable("locatie");
 
         //Configure relations
         modelBuilder.Entity<Incident>().HasMany(i => i.Karakteristieken).WithMany("_incidents");
-        modelBuilder.Entity<Incident>().HasOne(i => i.Meldingsclassificatie);
+        modelBuilder.Entity<Incident>().HasOne<Meldingsclassificatie>();
         modelBuilder.Entity<Incident>().HasOne(i => i.Locatie);
+        modelBuilder.Entity<KarakteristiekIntensiteit>().HasOne<Karakteristiek>();
+        modelBuilder.Entity<MeldingsclassificatieIntensiteit>().HasOne<Meldingsclassificatie>();
+        
         
         modelBuilder.UseSerialColumns();
     }
