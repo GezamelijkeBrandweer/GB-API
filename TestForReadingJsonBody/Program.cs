@@ -1,8 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.Text.Json.Nodes;
-using GB_API.Server.Data;
-using GB_API.Server.Data.IncidentDB;
 using MIC_RequestSender;
 
 var file = File.ReadAllText("C:\\Users\\Dylla\\RiderProjects\\GB-API\\MIC-RequestSender\\DummyData.json");

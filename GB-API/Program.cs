@@ -1,8 +1,6 @@
 using GB_API;
 using GB_API.Server.Application;
 using GB_API.Server.Data;
-using GB_API.Server.Data.IncidentDB;
-using GB_API.Server.Data.LocatieDB;
 using GB_API.Server.Domain;
 using Microsoft.EntityFrameworkCore;
 
