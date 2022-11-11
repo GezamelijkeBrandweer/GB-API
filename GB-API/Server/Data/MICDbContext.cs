@@ -5,11 +5,14 @@ namespace GB_API.Server.Data;
 
 public class MICDbContext : DbContext
 {
-    public DbSet<Locatie> Locaties { get;}
-    public DbSet<Incident> Incidents { get;}
-    public DbSet<Meldingsclassificatie> MeldingsClassificaties { get;}
-    public DbSet<Karakteristiek> Karakteristieks { get;}
-    public DbSet<Dienst> Diensten { get;}
+    public DbSet<Locatie> Locaties { get; set; }
+    public DbSet<Incident> Incidents { get; set; }
+    public DbSet<Meldingsclassificatie> MeldingsClassificaties { get; set; }
+    public DbSet<Karakteristiek> Karakteristieks { get; set; }
+    public DbSet<Dienst> Diensten { get; set;}
+    public DbSet<KarakteristiekIntensiteit> KarakteristiekIntensiteiten { get; set; }
+    public DbSet<MeldingsclassificatieIntensiteit> MeldingIntensiteiten { get; set; }
+    
 
     public MICDbContext(DbContextOptions<MICDbContext> options)
         : base(options)
@@ -33,10 +36,10 @@ public class MICDbContext : DbContext
 
         //Configure relations
         modelBuilder.Entity<Incident>().HasMany(i => i.Karakteristieken).WithMany("_incidents");
-        modelBuilder.Entity<Incident>().HasOne<Meldingsclassificatie>();
-        modelBuilder.Entity<Incident>().HasOne(i => i.Locatie);
-        modelBuilder.Entity<KarakteristiekIntensiteit>().HasOne<Karakteristiek>();
-        modelBuilder.Entity<MeldingsclassificatieIntensiteit>().HasOne<Meldingsclassificatie>();
+        // modelBuilder.Entity<Incident>().HasOne<Meldingsclassificatie>();
+        // modelBuilder.Entity<Incident>().HasOne(i => i.Locatie);
+        // modelBuilder.Entity<KarakteristiekIntensiteit>().HasOne<Karakteristiek>();
+        // modelBuilder.Entity<MeldingsclassificatieIntensiteit>().HasOne<Meldingsclassificatie>();
         
         
         modelBuilder.UseSerialColumns();

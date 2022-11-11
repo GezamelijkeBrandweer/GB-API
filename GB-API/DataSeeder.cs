@@ -14,6 +14,8 @@ public static class DataSeeder
         context.Database.EnsureCreated();
         SetUpDiensten(context);
         SetUpExcelWorkSheet(context);
+        SetUpKarakteristiekIntensiteiten(context);
+        SetUpMeldingIntensiteiten(context);
     }
     
     private static void SetUpExcelWorkSheet(MICDbContext context)
@@ -74,8 +76,8 @@ public static class DataSeeder
         {
             "Brandweer", "Politie", "Ambulance", "Marechaussee", "Waterpolitie", "Handhaving"
         };
-        
-        context.Diensten.AddRange(dienstName.ConvertAll(s => new Dienst(s)));
+        var ietsjes = dienstName.ConvertAll(s => new Dienst(s));
+        context.Diensten.AddRange(ietsjes);
         context.SaveChanges();
     }
 
@@ -84,5 +86,24 @@ public static class DataSeeder
         var random = new Random();
         var karakteristieken = context.Karakteristieks.ToList();
         var diensten = context.Diensten.ToList();
+        var KIntensiteiten = 
+            from karakteristiek in karakteristieken
+            from dienst in diensten
+            select new KarakteristiekIntensiteit(random.Next(0, 16), dienst, karakteristiek);
+        context.KarakteristiekIntensiteiten.AddRange(KIntensiteiten);
+        context.SaveChanges();
+    }
+
+    private static void SetUpMeldingIntensiteiten(MICDbContext context)
+    {
+        var random = new Random();
+        var meldingen = context.MeldingsClassificaties.ToList();
+        var diensten = context.Diensten.ToList();
+        var mIntensiteiten = 
+            from dienst in diensten
+            from melding in meldingen
+            select new MeldingsclassificatieIntensiteit(random.Next(0, 51), dienst, melding);
+        context.MeldingIntensiteiten.AddRange(mIntensiteiten);
+        context.SaveChanges();
     }
 }
