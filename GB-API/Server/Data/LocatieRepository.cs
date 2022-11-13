@@ -1,6 +1,6 @@
 ﻿using GB_API.Server.Domain;
 
-namespace GB_API.Server.Data.LocatieDB;
+namespace GB_API.Server.Data;
 
 public class LocatieRepository : IEntityRepository<Locatie>
 {
