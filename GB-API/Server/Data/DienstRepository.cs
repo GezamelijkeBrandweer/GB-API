@@ -1,8 +1,9 @@
 using GB_API.Server.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace GB_API.Server.Data;
 
-public class DienstRepository : IEntityRepository<Dienst>
+public class DienstRepository : IExtendedEntityRepository<Dienst>
 {
     private readonly MICDbContext _context;
 
@@ -34,5 +35,15 @@ public class DienstRepository : IEntityRepository<Dienst>
     public Dienst? GetById(long id)
     {
         return _context.Diensten.SingleOrDefault(dienst => dienst.Id == id);
+    }
+
+    public Dienst? GetByName(string name)
+    {
+        return _context.Diensten
+            .Include(d => d.KarakteristiekIntensiteiten)
+                .ThenInclude(kIntensiteit => kIntensiteit.Karakteristiek)
+            .Include(d => d.MeldingsclassificatieIntensiteiten)
+                .ThenInclude(mIntensiteit => mIntensiteit.Meldingsclassificatie)
+            .SingleOrDefault(dienst => dienst.Name == name);
     }
 }

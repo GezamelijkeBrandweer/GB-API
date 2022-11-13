@@ -22,6 +22,7 @@ public class Incident
 
     public void AddIntensiteit(Dienst dienst)
     {
-        Intensiteiten.Add(new Intensiteit(dienst));
+        List<long> karakteristiekenIds = Karakteristieken.Select(k => k.Id).ToList();
+        Intensiteiten.Add(new Intensiteit(dienst, Meldingsclassificatie, karakteristiekenIds));
     }
 }
