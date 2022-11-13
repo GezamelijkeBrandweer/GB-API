@@ -7,13 +7,15 @@ namespace GB_API;
 
 public static class DataSeeder
 {
-    
     public static void Seed(this IHost host)
     {
         using var scope = host.Services.CreateScope();
         using var context = scope.ServiceProvider.GetRequiredService<MICDbContext>();
         context.Database.EnsureCreated();
+        SetUpDiensten(context);
         SetUpExcelWorkSheet(context);
+        SetUpKarakteristiekIntensiteiten(context);
+        SetUpMeldingIntensiteiten(context);
     }
     
     private static void SetUpExcelWorkSheet(MICDbContext context)
@@ -51,7 +53,6 @@ public static class DataSeeder
     private static void LoadAllKarakteristieken(MICDbContext context, _Worksheet xlWorksheet)
     {
         var karakteristiek = context.Karakteristieks.FirstOrDefault();
-        var random = new Random();
         if (karakteristiek != null) return;
         var karakteristiekList = new List<Karakteristiek>();
         var xlRange = xlWorksheet.UsedRange;
@@ -67,6 +68,42 @@ public static class DataSeeder
             karakteristiekList.Add(new Karakteristiek(naam,type, waarde, volgNr));
         }
         context.Karakteristieks.AddRange(karakteristiekList);
+        context.SaveChanges();
+    }
+    private static void SetUpDiensten(MICDbContext context)
+    {
+        var dienstName = new List<string>()
+        {
+            "Brandweer", "Politie", "Ambulance", "Marechaussee", "Waterpolitie", "Handhaving"
+        };
+        var ietsjes = dienstName.ConvertAll(s => new Dienst(s));
+        context.Diensten.AddRange(ietsjes);
+        context.SaveChanges();
+    }
+
+    private static void SetUpKarakteristiekIntensiteiten(MICDbContext context)
+    {
+        var random = new Random();
+        var karakteristieken = context.Karakteristieks.ToList();
+        var diensten = context.Diensten.ToList();
+        var KIntensiteiten = 
+            from karakteristiek in karakteristieken
+            from dienst in diensten
+            select new KarakteristiekIntensiteit(random.Next(0, 16), dienst, karakteristiek);
+        context.KarakteristiekIntensiteiten.AddRange(KIntensiteiten);
+        context.SaveChanges();
+    }
+
+    private static void SetUpMeldingIntensiteiten(MICDbContext context)
+    {
+        var random = new Random();
+        var meldingen = context.MeldingsClassificaties.ToList();
+        var diensten = context.Diensten.ToList();
+        var mIntensiteiten = 
+            from dienst in diensten
+            from melding in meldingen
+            select new MeldingsclassificatieIntensiteit(random.Next(0, 51), dienst, melding);
+        context.MeldingIntensiteiten.AddRange(mIntensiteiten);
         context.SaveChanges();
     }
 }

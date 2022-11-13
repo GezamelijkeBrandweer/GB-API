@@ -12,7 +12,6 @@ public class Meldingsclassificatie
     
     public Meldingsclassificatie(){ }
     
-
     public Meldingsclassificatie(string niveau1, string niveau2, string niveau3, string afkorting, string definitie, string presentatieTekst)
     {
         Niveau1 = niveau1;
