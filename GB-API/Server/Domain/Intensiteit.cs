@@ -11,28 +11,18 @@ public class Intensiteit
         
     }
     
-    public Intensiteit(Dienst dienst, Meldingsclassificatie classificatie, List<long> karakteristiekenIds)
+    public Intensiteit(Dienst dienst)
     {
         Dienst = dienst;
-        Score = GetTotalScore(classificatie, karakteristiekenIds);
+        Score = GetTotalScore();
     }
     
-    private int GetTotalScore(Meldingsclassificatie classificatie, List<long> karakteristiekenIds)
+    private int GetTotalScore()
     {
         int total = 0;
         
-        var kIntensiteitenAll = Dienst.KarakteristiekIntensiteiten;
-        var mIntensiteitenAll = Dienst.MeldingsclassificatieIntensiteiten;
-        
-        // Hier wordt nog gefilterd op de classificatie en karakteristieken van het incident
-        // Duurt ook lang
-        var mIntensiteiten = mIntensiteitenAll
-            .Where(mIntensiteit => mIntensiteit.Meldingsclassificatie.Id == classificatie.Id)
-            .ToList();
-        
-        var kIntensiteiten = kIntensiteitenAll
-            .Where(kIntensiteit => karakteristiekenIds.Contains(kIntensiteit.Karakteristiek.Id))
-            .ToList();
+        var kIntensiteiten = Dienst.KarakteristiekIntensiteiten;
+        var mIntensiteiten = Dienst.MeldingsclassificatieIntensiteiten;
         
         kIntensiteiten.ForEach(kIntensiteit => total += kIntensiteit.Punten);
         mIntensiteiten.ForEach(mIntensiteit => total += mIntensiteit.Punten);

@@ -1,5 +1,4 @@
 using GB_API.Server.Domain;
-using Microsoft.EntityFrameworkCore;
 
 namespace GB_API.Server.Data;
 
@@ -40,10 +39,6 @@ public class DienstRepository : IExtendedEntityRepository<Dienst>
     public Dienst? GetByName(string name)
     {
         return _context.Diensten
-            .Include(d => d.KarakteristiekIntensiteiten)
-                .ThenInclude(kIntensiteit => kIntensiteit.Karakteristiek)
-            .Include(d => d.MeldingsclassificatieIntensiteiten)
-                .ThenInclude(mIntensiteit => mIntensiteit.Meldingsclassificatie)
             .SingleOrDefault(dienst => dienst.Name == name);
     }
 }

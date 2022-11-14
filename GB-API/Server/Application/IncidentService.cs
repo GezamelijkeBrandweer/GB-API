@@ -9,14 +9,16 @@ public class IncidentService : IIncidentService
     private readonly IEntityRepository<Karakteristiek> _karatkteristiekRepository;
     private readonly IEntityRepository<Meldingsclassificatie> _meldingRepository;
     private readonly IExtendedEntityRepository<Dienst> _dienstRepository;
+    private readonly ReadIntensiteitenRepository _intensiteitenRepository;
 
     public IncidentService(IEntityRepository<Incident> incidentRepository, IEntityRepository<Karakteristiek> karatkteristiekRepository, 
-        IEntityRepository<Meldingsclassificatie> meldingRepository, IExtendedEntityRepository<Dienst> dienstRepository)
+        IEntityRepository<Meldingsclassificatie> meldingRepository, IExtendedEntityRepository<Dienst> dienstRepository, ReadIntensiteitenRepository intensiteitenRepository)
     {
         _incidentRepository = incidentRepository;
         _karatkteristiekRepository = karatkteristiekRepository;
         _meldingRepository = meldingRepository;
         _dienstRepository = dienstRepository;
+        _intensiteitenRepository = intensiteitenRepository;
     }
 
     public Incident Save(string name, long meldingId, long karakteristiekId)
@@ -31,9 +33,16 @@ public class IncidentService : IIncidentService
         incident.Karakteristieken.Add(karakteristiek!);
         incident.Meldingsclassificatie = melding!;
 
-        // Via eagerly loading worden alle bijhorende KarakteristiekenIntensiteiten en MeldingClassificatiesIntensiteiten opgehaald
-        // Dit duurt zelf al lang
+        // Via een custom Repository worden nu alleen de nodige intensiteiten opgehaald
         Dienst dienst = _dienstRepository.GetByName("Brandweer")!;
+        var classificatieIntensiteiten = _intensiteitenRepository
+            .GetClassificatieIntensiteitenFromDienstAndClassificatie(dienst, incident.Meldingsclassificatie);
+        classificatieIntensiteiten!.ForEach(c => dienst.MeldingsclassificatieIntensiteiten.Add(c));
+
+        var karakteristiekIntensiteiten = _intensiteitenRepository
+            .GetKarakteristiekIntensiteitenFromDienstAndKarakteristieken(dienst, incident.Karakteristieken.ToList());
+        karakteristiekIntensiteiten!.ForEach(k => dienst.KarakteristiekIntensiteiten.Add(k));
+        
         incident.AddIntensiteit(dienst);
 
         _incidentRepository.Save(incident);
