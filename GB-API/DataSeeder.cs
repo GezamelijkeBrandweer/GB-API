@@ -1,5 +1,7 @@
 using GB_API.Server.Data;
 using GB_API.Server.Domain;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Office.Interop.Excel;
 using Range = Microsoft.Office.Interop.Excel.Range;
 
@@ -11,7 +13,11 @@ public static class DataSeeder
     {
         using var scope = host.Services.CreateScope();
         using var context = scope.ServiceProvider.GetRequiredService<MICDbContext>();
+
+        EmptyTables(context);
+        
         context.Database.EnsureCreated();
+        
         SetUpDiensten(context);
         SetUpExcelWorkSheet(context);
         SetUpKarakteristiekIntensiteiten(context);
@@ -105,5 +111,15 @@ public static class DataSeeder
             select new MeldingsclassificatieIntensiteit(random.Next(0, 51), dienst, melding);
         context.MeldingIntensiteiten.AddRange(mIntensiteiten);
         context.SaveChanges();
+    }
+
+    private static void EmptyTables(DbContext context)
+    {
+        const string databaseSchema = "MIC-DB";
+        var tableNames = context.Model.GetEntityTypes()
+            .Select(t => t.GetTableName())
+            .Distinct()
+            .ToList();
+        tableNames.ForEach(tableName => context.Database.ExecuteSqlRaw($"TRUNCATE TABLE \"{databaseSchema}\".\"{tableName}\" RESTART IDENTITY CASCADE"));
     }
 }
