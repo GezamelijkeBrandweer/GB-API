@@ -2,7 +2,7 @@ using GB_API.Server.Domain;
 
 namespace GB_API.Server.Data;
 
-public class DienstRepository : IEntityRepository<Dienst>
+public class DienstRepository : IExtendedEntityRepository<Dienst>
 {
     private readonly MICDbContext _context;
 
@@ -34,5 +34,11 @@ public class DienstRepository : IEntityRepository<Dienst>
     public Dienst? GetById(long id)
     {
         return _context.Diensten.SingleOrDefault(dienst => dienst.Id == id);
+    }
+
+    public Dienst? GetByName(string name)
+    {
+        return _context.Diensten
+            .SingleOrDefault(dienst => dienst.Name == name);
     }
 }

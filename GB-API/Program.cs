@@ -20,6 +20,8 @@ builder.Services.AddScoped<IEntityRepository<Incident>, IncidentRepository>();
 builder.Services.AddScoped<IEntityRepository<Locatie>, LocatieRepository>();
 builder.Services.AddScoped<IEntityRepository<Karakteristiek>, KarakteristiekRepository>();
 builder.Services.AddScoped<IEntityRepository<Meldingsclassificatie>, MeldingClassificatieRepository>();
+builder.Services.AddScoped<IExtendedEntityRepository<Dienst>, DienstRepository>();
+builder.Services.AddScoped<ReadIntensiteitenRepository>();
 builder.Services.AddConnections();
 
 // Dependency injection

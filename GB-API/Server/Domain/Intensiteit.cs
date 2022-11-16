@@ -3,7 +3,7 @@ namespace GB_API.Server.Domain;
 public class Intensiteit
 {
     public long Id { get; set; }
-    public int Score { get; }
+    public int Score { get; set; }
     public Dienst Dienst { get; set; }
 
     public Intensiteit()
@@ -20,7 +20,7 @@ public class Intensiteit
     private int GetTotalScore()
     {
         int total = 0;
-
+        
         var kIntensiteiten = Dienst.KarakteristiekIntensiteiten;
         var mIntensiteiten = Dienst.MeldingsclassificatieIntensiteiten;
         

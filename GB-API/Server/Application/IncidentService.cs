@@ -8,12 +8,17 @@ public class IncidentService : IIncidentService
     private readonly IEntityRepository<Incident> _incidentRepository;
     private readonly IEntityRepository<Karakteristiek> _karatkteristiekRepository;
     private readonly IEntityRepository<Meldingsclassificatie> _meldingRepository;
+    private readonly IExtendedEntityRepository<Dienst> _dienstRepository;
+    private readonly ReadIntensiteitenRepository _intensiteitenRepository;
 
-    public IncidentService(IEntityRepository<Incident> incidentRepository, IEntityRepository<Karakteristiek> karatkteristiekRepository, IEntityRepository<Meldingsclassificatie> meldingRepository)
+    public IncidentService(IEntityRepository<Incident> incidentRepository, IEntityRepository<Karakteristiek> karatkteristiekRepository, 
+        IEntityRepository<Meldingsclassificatie> meldingRepository, IExtendedEntityRepository<Dienst> dienstRepository, ReadIntensiteitenRepository intensiteitenRepository)
     {
         _incidentRepository = incidentRepository;
         _karatkteristiekRepository = karatkteristiekRepository;
         _meldingRepository = meldingRepository;
+        _dienstRepository = dienstRepository;
+        _intensiteitenRepository = intensiteitenRepository;
     }
 
     public Incident Save(string name, long meldingId, long karakteristiekId)
@@ -27,17 +32,20 @@ public class IncidentService : IIncidentService
         
         incident.Karakteristieken.Add(karakteristiek!);
         incident.Meldingsclassificatie = melding!;
-        
-        //incident.Intensiteit = new Intensiteit(50, new Dienst("Brandweer"));
 
-        // Dienst aanmaken en dan daar de intensiteiten toevoegen
-        Dienst dienst = new Dienst("Brandweer");
-        dienst.AddKarakteristiekIntensiteit(25, incident.Karakteristieken.First());
-        dienst.AddMeldingsclassificatieIntensiteit(10, incident.Meldingsclassificatie);
+        // Via een custom Repository worden nu alleen de nodige intensiteiten opgehaald
+        Dienst dienst = _dienstRepository.GetByName("Brandweer")!;
+        var classificatieIntensiteiten = _intensiteitenRepository
+            .GetClassificatieIntensiteitenFromDienstAndClassificatie(dienst, incident.Meldingsclassificatie);
+        classificatieIntensiteiten!.ForEach(c => dienst.MeldingsclassificatieIntensiteiten.Add(c));
+
+        var karakteristiekIntensiteiten = _intensiteitenRepository
+            .GetKarakteristiekIntensiteitenFromDienstAndKarakteristieken(dienst, incident.Karakteristieken.ToList());
+        karakteristiekIntensiteiten!.ForEach(k => dienst.KarakteristiekIntensiteiten.Add(k));
         
         incident.AddIntensiteit(dienst);
 
         _incidentRepository.Save(incident);
         return incident;
-    }
+    }  
 }
